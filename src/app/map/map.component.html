@@ -1,0 +1,51 @@
+<div class="svg-container">
+  <div
+    class="tooltip"
+    [ngStyle]="{
+      left: tooltipCoords.x + 'px',
+      top: tooltipCoords.y + 'px',
+      opacity: tooltip === '' ? 0 : 1,
+      height: tooltip === '' ? '0px' : '30px',
+    }"
+  >
+    {{ tooltip }}
+  </div>
+
+  <svg
+    [attr.viewBox]="viewBox"
+    #mapSvg
+    (mousedown)="mouseDown(mapSvg, $event)"
+    (mousemove)="mouseMove($event)"
+    (mouseup)="mouseUp()"
+    (mouseleave)="mouseLeave($event)"
+    (mouseenter)="mouseEnter($event, mapSvg)"
+    style="cursor: grab"
+    (click)="setCountry({ id: '', shape: '' }, $event)"
+  >
+    <path
+      tabindex="0"
+      *ngFor="let country of mapCountries"
+      [attr.d]="country.shape"
+      [appHighlight]="isMouseDown"
+      stroke="black"
+      style="cursor: pointer"
+      (mouseenter)="setTooltip(country.id)"
+      (mouseleave)="setTooltip('')"
+      (click)="setCountry(country, $event)"
+    />
+  </svg>
+
+  <app-infobox
+    *ngIf="showInfo"
+    [x]="infoCoords.x"
+    [y]="infoCoords.y"
+    [country]="selectedCountry.id"
+  ></app-infobox>
+
+  <!-- <div
+    class="info"
+    [ngStyle]="{ left: initialX + 'px', top: initialY + 'px' }"
+  ></div> -->
+</div>
+<!-- <button (click)="zoomIn()">+</button>
+<button (click)="zoomOut()">-</button> -->

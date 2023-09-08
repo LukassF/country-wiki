@@ -1,0 +1,26 @@
+// @import "vars";
+
+main {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+  height: calc(100vh - 20px);
+  min-width: 800px;
+  // background-color: rgb(7, 2, 53);
+  background-color: var(--background-main);
+  transition: all 0.3s;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 9fr;
+  }
+
+  .router-content {
+    overflow: hidden;
+    height: 100%;
+    border-radius: 20px;
+    border: solid var(--border-main) 2px;
+  }
+}

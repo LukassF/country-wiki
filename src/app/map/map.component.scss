@@ -1,0 +1,25 @@
+div.svg-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .tooltip {
+    width: 100px;
+    height: 30px;
+    background-color: rgb(65, 65, 65);
+    border-radius: 20px;
+    display: grid;
+    place-content: center;
+    color: white;
+    position: fixed;
+    z-index: 20;
+    transition: height 0.2s, opacity 0.4s;
+  }
+
+  svg {
+    height: 100%;
+    // background-color: red;
+  }
+}

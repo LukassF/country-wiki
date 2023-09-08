@@ -1,0 +1,52 @@
+<div @fadeInOut class="info-box" [ngStyle]="{ left: x + '%', top: y + '%' }">
+  <article *ngIf="response && !error">
+    <div class="info-content">
+      <h3>{{ response.name.common }}</h3>
+      <h4>{{ nativeName }}</h4>
+
+      <hr />
+
+      <ul>
+        <li>
+          <i class="fa fa-globe"></i
+          ><span *ngFor="let lang of languages; let index = index">
+            {{ lang }}{{ index + 1 === languages.length ? "" : "," }}</span
+          >
+        </li>
+        <li>
+          <i class="fa fa-people-group"></i> {{ response.population | number }}
+        </li>
+        <li><i class="fa fa-location-dot"></i>{{ response.capital[0] }}</li>
+        <li>
+          <i class="fa fa-layer-group"></i> {{ response.area | number }} km<sup
+            >2</sup
+          >
+        </li>
+
+        <li>
+          <i class="fa fa-money"></i>
+          <!-- @ts/ignore -->
+          <span *ngFor="let curr of currencies; let index = index">
+            {{ curr.name
+            }}{{ index + 1 === currencies.length ? "" : "," }}</span
+          >
+        </li>
+      </ul>
+
+      <div class="flag">
+        <img [src]="response.flags.svg" [alt]="response.flags.alt" />
+        <p>{{ response.flags.alt }}</p>
+      </div>
+    </div>
+
+    <img
+      class="background"
+      [src]="response.image.src.original"
+      [alt]="response.image.alt"
+      (load)="loaded('success')"
+      (error)="loaded('error')"
+    />
+  </article>
+  <div class="loader" *ngIf="!response || isLoading">Loading..</div>
+  <div *ngIf="!isLoading || error">Error</div>
+</div>
