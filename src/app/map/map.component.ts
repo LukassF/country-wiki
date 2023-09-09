@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import country from 'world-map-country-shapes';
+import { TooltipService } from '../services/tooltip/tooltip.service';
 
 @Component({
   selector: 'app-map',
@@ -23,10 +24,9 @@ export class MapComponent {
   viewBox: string = `${this.x} ${this.y} ${2000 / this.zoom} ${
     1000 / this.zoom
   }`;
-
   wheelEventListener: boolean = false;
 
-  constructor() {}
+  constructor(public tooltipS: TooltipService) {}
 
   updateViewBox() {
     this.viewBox = `${
@@ -86,11 +86,6 @@ export class MapComponent {
 
   mouseLeave(e: Event) {
     this.isMouseDown = false;
-    // e.currentTarget?.removeEventListener('wheel', (wheel) =>
-    //   this.zoomInOut(wheel)
-    // );
-    // // this.wheelEventListener = false;
-    // console.log(this.wheelEventListener);
   }
 
   mouseEnter(e: Event, map: HTMLElement) {

@@ -1,17 +1,5 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  OnDestroy,
-  SimpleChanges,
-} from '@angular/core';
-import {
-  style,
-  state,
-  animate,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { style, animate, transition, trigger } from '@angular/animations';
 import { FetchService } from '../services/fetch/fetch.service';
 
 @Component({
@@ -72,7 +60,6 @@ export class InfoboxComponent implements OnInit {
   }
 
   loaded(status: string) {
-    console.log(this.isLoading);
     this.isLoading = false;
     switch (status) {
       case 'success':

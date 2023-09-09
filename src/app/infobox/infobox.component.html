@@ -1,6 +1,13 @@
 <div @fadeInOut class="info-box" [ngStyle]="{ left: x + '%', top: y + '%' }">
+  <div class="loader" *ngIf="isLoading">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
   <article *ngIf="response && !error">
-    <div class="info-content">
+    <div class="info-content" *ngIf="!isLoading">
       <h3>{{ response.name.common }}</h3>
       <h4>{{ nativeName }}</h4>
 
@@ -25,7 +32,6 @@
 
         <li>
           <i class="fa fa-money"></i>
-          <!-- @ts/ignore -->
           <span *ngFor="let curr of currencies; let index = index">
             {{ curr.name
             }}{{ index + 1 === currencies.length ? "" : "," }}</span
@@ -40,6 +46,7 @@
     </div>
 
     <img
+      [style.opacity]="isLoading ? 0 : 0.8"
       class="background"
       [src]="response.image.src.original"
       [alt]="response.image.alt"
@@ -47,6 +54,6 @@
       (error)="loaded('error')"
     />
   </article>
-  <div class="loader" *ngIf="!response || isLoading">Loading..</div>
-  <div *ngIf="!isLoading || error">Error</div>
+
+  <div *ngIf="error">Could not find.</div>
 </div>

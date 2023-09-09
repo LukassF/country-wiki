@@ -1,5 +1,36 @@
 <nav>
-  <button (click)="toggleTheme()">Change theme</button>
-  <!-- <a routerLink="">Home</a>
-  <a [routerLink]="['/info', '3']">Info</a> -->
+  <article>
+    <div>
+      <h5>Change theme</h5>
+      <button (click)="toggleTheme()">
+        <div
+          [style.transform]="
+            currentTheme === 'light' ? 'translateX(0)' : 'translateX(198%)'
+          "
+          [style.backgroundColor]="
+            currentTheme === 'dark' ? '#DF05FC' : 'rgb(68, 67, 67)'
+          "
+        ></div>
+      </button>
+    </div>
+
+    <div>
+      <h5>Show tooltip</h5>
+      <button (click)="toggleShowTooltip()">
+        <div
+          [style.transform]="
+            !tooltipS.showTooltip ? 'translateX(0)' : 'translateX(198%)'
+          "
+          [style.backgroundColor]="
+            tooltipS.showTooltip ? '#DF05FC' : 'rgb(68, 67, 67)'
+          "
+        ></div>
+      </button>
+    </div>
+  </article>
+
+  <article>
+    <button><i class="fa fa-cogs"></i></button>
+    <button><i class="fa fa-refresh"></i></button>
+  </article>
 </nav>

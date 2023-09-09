@@ -1,5 +1,6 @@
 <div class="svg-container">
   <div
+    *ngIf="tooltipS.showTooltip"
     class="tooltip"
     [ngStyle]="{
       left: tooltipCoords.x + 'px',
